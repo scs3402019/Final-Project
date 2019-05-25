@@ -12,10 +12,11 @@
 -- Make sure that null values are not allowed for important fields
 -- Create All Tables for the music database.  --
 CREATE TABLE Artist (
-    Name  VARCHAR(50),
-    City VARCHAR(50),
-    State VARCHAR(15),
-    Genre VARCHAR(15)
+    Name  VARCHAR(64),
+    Street VARCHAR(64) NULL,
+    City VARCHAR(64),
+    State VARCHAR(16),
+    Genre VARCHAR(16)
     PRIMARY KEY (NAME)
 );
 
@@ -82,6 +83,34 @@ VALUES ('', 00/00/0000, '');
 
 
 -- Insert values into Artist                     --
+
+INSERT INTO Artist (Name, Street, City, State, Genre)
+VALUES ('',NULL,'','','');
+
+INSERT INTO Artist (Name, Street, City, State, Genre)
+VALUES ('Logic',NULL,'Beverly Hills','California','Rap');
+INSERT INTO Artist (Name, Street, City, State, Genre)
+VALUES ('Eminem',NULL,'Clinton Township','Michigan','Rap');
+INSERT INTO Artist (Name, Street, City, State, Genre)
+VALUES ('Tyler the Creator',NULL,'Ladera Heights','California','Rap');
+INSERT INTO Artist (Name, Street, City, State, Genre)
+VALUES ('Ces Cru',NULL,'Kansas City','Missouri','Rap');
+INSERT INTO Artist (Name, Street, City, State, Genre)
+VALUES ('MGK',NULL,'Houston','Texas','Rap');
+INSERT INTO Artist (Name, Street, City, State, Genre)
+VALUES ('Jedi Mind Tricks',NULL,'Philadelphia','Pennsylvania','Rap');
+INSERT INTO Artist (Name, Street, City, State, Genre)
+VALUES ('Tech N9ne',NULL,'Kasas City','Missouri','Rap');
+INSERT INTO Artist (Name, Street, City, State, Genre)
+VALUES ('Odd Future',NULL,'Los Angeles','California','Alternative Hip Hop');
+INSERT INTO Artist (Name, Street, City, State, Genre)
+VALUES ('Push T',NULL,'New York City','New York','Hip Hop');
+INSERT INTO Artist (Name, Street, City, State, Genre)
+VALUES ('Mac Lethal',NULL,'Kansas City','Missouri','Rap');
+INSERT INTO Artist (Name, Street, City, State, Genre)
+VALUES ('Jarren Benton',NULL,'Decatur','Georgia','Hip Hop');
+INSERT INTO Artist (Name, Street, City, State, Genre)
+VALUES ('Logic?',NULL,NULL,NULL,'Hip Hop');
 
 -- Insert values into Song                       --
 
