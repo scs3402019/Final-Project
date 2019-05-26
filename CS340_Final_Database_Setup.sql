@@ -29,6 +29,7 @@ CREATE TABLE Users (
 );
 
 CREATE TABLE Alblum (
+      Cover VARBINARY(MAX),
       Writer VARCHAR(64),
       Release_Date DATE,
       Name VARCHAR(64) NOT NULL 
@@ -78,14 +79,41 @@ INSERT INTO Alblum (Writer, Release_Date, Name)
 VALUES ('', 00/00/0000, '');
 INSERT INTO Alblum (Writer, Release_Date, Name)
 VALUES ('', 00/00/0000, '');
-INSERT INTO Alblum (Writer, Release_Date, Name)
-VALUES ('', 00/00/0000, '');
+
+-- Testing Image storage here, may need some php to access --
+INSERT INTO Alblum (Writer, Release_Date, Name, Cover)
+VALUES ('', 00/00/0000, '', (SELECT * FROM OPENROWSET(BULK N'%CD%\AlblumCovers\<albname>', SINGLE_BLOB)));
 
 
 -- Insert values into Artist                     --
 
 INSERT INTO Artist (Name, Street, City, State, Genre)
-VALUES ('',NULL,'','','');
+VALUES ('DC Talk',NULL,'Lynchburg','Virgina','Christian Rock');
+INSERT INTO Artist (Name, Street, City, State, Genre)
+VALUES ('Skillet',NULL,'Memphis','Tennessee','Chirstina Rock');
+INSERT INTO Artist (Name, Street, City, State, Genre)
+VALUES ('Lifehouse',NULL,'Los Angeles','California','Alternative Rock');
+INSERT INTO Artist (Name, Street, City, State, Genre)
+VALUES ('Eagel Eye Cherry',NULL,'Sockholm','Sweden','Rock');
+INSERT INTO Artist (Name, Street, City, State, Genre)
+VALUES ('Matchbox 20',NULL,'Orlando','Florida','Alternative Rock');
+INSERT INTO Artist (Name, Street, City, State, Genre)
+VALUES ('Barenaked Ladies',NULL,'Ontaria','Canada','Alternative Rock');
+INSERT INTO Artist (Name, Street, City, State, Genre)
+VALUES ('Nena',NULL,'West Berlin','Germany','Rock');
+INSERT INTO Artist (Name, Street, City, State, Genre)
+VALUES ('Thousand Foot Krutch',NULL,'Ontario','Canada','Christian Rock');
+INSERT INTO Artist (Name, Street, City, State, Genre)
+VALUES ('Counting Crows',NULL,'Berkeley','California','Alternative Rock');
+INSERT INTO Artist (Name, Street, City, State, Genre)
+VALUES ('Goo Goo Dolls',NULL,'Buffalo','New York','Alternative Rock');
+INSERT INTO Artist (Name, Street, City, State, Genre)
+VALUES ('Garth Brooks',NULL,'Tusla','Oklahoma','Country');
+INSERT INTO Artist (Name, Street, City, State, Genre)
+VALUES ('P.O.D',NULL,'San Diego','California','Christian Metal');
+
+
+
 
 INSERT INTO Artist (Name, Street, City, State, Genre)
 VALUES ('Logic',NULL,'Beverly Hills','California','Rap');
