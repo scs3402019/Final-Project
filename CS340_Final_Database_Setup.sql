@@ -64,19 +64,53 @@ CREATE TABLE User_Friend (
 -- Insert Values into the Alblum Table.         --
 
 INSERT INTO Alblum (Writer, Release_Date, Name)
-VALUES ('', 11/21/1995 , 'Jesus Freak');
+VALUES ('DC Talk', 11/21/1995 , 'Jesus Freak');
 INSERT INTO Alblum (Writer, Release_Date, Name)
-VALUES ('', 00/00/0000, '');
+VALUES ('Skillet', 01/24/2017, 'Unleashed');
 INSERT INTO Alblum (Writer, Release_Date, Name)
-VALUES ('', 00/00/0000, '');
+VALUES ('Lifehouse', 03/22/2005, 'Who We Are');
 INSERT INTO Alblum (Writer, Release_Date, Name)
-VALUES ('', 00/00/0000, '');
+VALUES ('Eagele Eye Cherry', 08/16/2008, 'Desireless');
 INSERT INTO Alblum (Writer, Release_Date, Name)
-VALUES ('', 00/00/0000, '');
+VALUES ('Matchbox 20', 11/19/2002, 'More Than You Think You Are');
 INSERT INTO Alblum (Writer, Release_Date, Name)
-VALUES ('', 00/00/0000, '');
+VALUES ('Nena', 04/08/1984, '99 Luftballons');
 INSERT INTO Alblum (Writer, Release_Date, Name)
-VALUES ('', 00/00/0000, '');
+VALUES ('Thousand Foot Krutch', 06/17/2016, 'Exhale');
+INSERT INTO Alblum (Writer, Release_Date, Name)
+VALUES ('Counting Crows', 07/05/2004, 'Shre 2(soundtrack)');
+INSERT INTO Alblum (Writer, Release_Date, Name)
+VALUES ('Goo Goo Dolls', 04/07/1998, 'City of Angels');
+INSERT INTO Alblum (Writer, Release_Date, Name)
+VALUES ('Garth Brooks', 09/02/1991, 'Ropin the Wind');
+INSERT INTO Alblum (Writer, Release_Date, Name)
+VALUES ('P.O.D', 09/11/2001, 'Satellite');
+
+INSERT INTO Alblum (Writer, Release_Date, Name)
+VALUES ('Eminem', 08/31/2018, 'Kamikazie');
+INSERT INTO Alblum (Writer, Release_Date, Name)
+VALUES ('Logic', 05/01/2019, 'Confessions of A Dangerous Mind');
+INSERT INTO Alblum (Writer, Release_Date, Name)
+VALUES ('Tyler The Creator', 03/21/0000, 'OKRA');
+INSERT INTO Alblum (Writer, Release_Date, Name)
+VALUES ('Ces Cru', 10/30/2015, 'Catestrophic Event Specilaists');
+INSERT INTO Alblum (Writer, Release_Date, Name)
+VALUES ('MGK', 10/05/2012, 'Lace Up');
+INSERT INTO Alblum (Writer, Release_Date, Name)
+VALUES ('Jedi Mind Tricks', 12/22/2011, 'Violence Begets Violence');
+INSERT INTO Alblum (Writer, Release_Date, Name)
+VALUES ('Tech N9ne', 00/00/0000, 'Something Else');
+INSERT INTO Alblum (Writer, Release_Date, Name)
+VALUES ('Odd Future', 03/20/2012, 'The OF Tape Vol 2');
+INSERT INTO Alblum (Writer, Release_Date, Name)
+VALUES ('Pusha T', 10/07/2013, 'Spotify Sessions');
+INSERT INTO Alblum (Writer, Release_Date, Name)
+VALUES ('Mac Lethal', 09/06/2016, 'Congratulations');
+INSERT INTO Alblum (Writer, Release_Date, Name)
+VALUES ('Jarren Benton', 10/03/2014, 'Skitzo - Single');
+INSERT INTO Alblum (Writer, Release_Date, Name)
+VALUES ('Logic?', 05/05/2015, 'My Movie');
+
 INSERT INTO Alblum (Writer, Release_Date, Name)
 VALUES ('', 00/00/0000, '');
 
@@ -155,7 +189,7 @@ VALUES ('Matchbox 20', 'Unwell', '3:48', 10/26/2009);
 INSERT INTO Song (Tilte, Performer, Length, Release_Date)
 VALUES ('Barenaked Ladies', 'Pinch Me', '3:49', 10/26/2009);
 INSERT INTO Song (Tilte, Performer, Length, Release_Date)
-VALUES ('Nena', '99 Luftballoons', '3:49', 07/29/2006);
+VALUES ('Nena', '99 Luftballons', '3:49', 07/29/2006);
 INSERT INTO Song (Tilte, Performer, Length, Release_Date)
 VALUES ('Thousand Foot Krutch', 'Running With Giants', '4:09', 02/25/2016);
 INSERT INTO Song (Tilte, Performer, Length, Release_Date)
@@ -180,7 +214,7 @@ VALUES ('Edge of Destruction','MGK','5:07',10/05/2012);
 INSERT INTO Song (Performer, Name, Length, Release_Date)
 VALUES ('Design in Malilce','Jedi Mind Tricks','3:56',12/22/2011);
 INSERT INTO Song (Performer, Name, Length, Release_Date)
-VALUES ('So Dope','Tehc N9ne','4:26',07/25/2013);
+VALUES ('So Dope','Tech N9ne','4:26',07/25/2013);
 INSERT INTO Song (Performer, Name, Length, Release_Date)
 VALUES ('Oldie','Odd Future','10:38',03/20/2012);
 INSERT INTO Song (Performer, Name, Length, Release_Date)
