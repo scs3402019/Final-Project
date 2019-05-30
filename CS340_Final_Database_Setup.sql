@@ -57,8 +57,7 @@ CREATE TABLE PlayList (
 CREATE TABLE User_Friend (
     Username VARCHAR(64),
     Friend VARCHAR(64)
-    PRIMARY KEY (Username)
-    FOREIGN KEY (Username) REFERENCES Users(Username) 
+    PRIMARY KEY (Username) 
 );
 
 -- Insert Values into the Alblum Table.         --
