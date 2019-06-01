@@ -22,10 +22,10 @@ CREATE TABLE Artist (
 
 CREATE TABLE Users (
     Username VARCHAR(64) NOT NULL,
-    Password VARCHAR(128) NOT NULL,
-    F_Username VARCHAR(64) NOT NULL  
+    Fname VARCHAR(64) NOT NULL,
+    Password VARCHAR(128) NOT NULL
     PRIMARY KEY (Username)
-    FOREIGN KEY (F_Username) REFERENCES User_Friend(Username)
+    FOREIGN KEY (Username) REFERENCES User_Friend(Username)
 );
 
 CREATE TABLE Alblum (
@@ -56,9 +56,58 @@ CREATE TABLE PlayList (
 
 CREATE TABLE User_Friend (
     Username VARCHAR(64),
-    Friend VARCHAR(64)
+    FriendName VARCHAR(64)
     PRIMARY KEY (Username) 
 );
+
+-- Insert Values into Users Table                --
+
+INSERT INTO Users (Username, Fname, Password)
+VALUES("Zerodashzero", "Bob","Password");
+INSERT INTO Users (Username, Fname, Password)
+VALUES("loialest", "Jimmothy","1234");
+INSERT INTO Users (Username, Fname, Password)
+VALUES("atlas884", "Sara","SuperSecretKey");
+INSERT INTO Users (Username, Fname, Password)
+VALUES("few_lor", "Karol","asdf32345sd*7");
+INSERT INTO Users (Username, Fname, Password)
+VALUES("Minithra", "Tony","CheeseIsGood");
+INSERT INTO Users (Username, Fname, Password)
+VALUES("lowko", "Tim","PleaseDontHackMe");
+INSERT INTO Users (Username, Fname, Password)
+VALUES("Swordie100", "Nancy","SQLBeCool");
+INSERT INTO Users (Username, Fname, Password)
+VALUES("gaurav104", "Neil","LetmeInnnnn");
+INSERT INTO Users (Username, Fname, Password)
+VALUES("bookershune", "Bella","Dodge:5:");
+INSERT INTO Users (Username, Fname, Password)
+VALUES("v3rononx", "Zach","RayIsaCuteDoge");
+
+-- Insert Values into User_Friends Table        --
+
+INSERT INTO User_Friend (Username, FriendName)
+VALUES(" "," ");
+INSERT INTO User_Friend (Username, FriendName)
+VALUES(" "," ");
+INSERT INTO User_Friend (Username, FriendName)
+VALUES(" "," ");
+INSERT INTO User_Friend (Username, FriendName)
+VALUES(" "," ");
+INSERT INTO User_Friend (Username, FriendName)
+VALUES(" "," ");
+INSERT INTO User_Friend (Username, FriendName)
+VALUES(" "," ");
+INSERT INTO User_Friend (Username, FriendName)
+VALUES(" "," ");
+INSERT INTO User_Friend (Username, FriendName)
+VALUES(" "," ");
+INSERT INTO User_Friend (Username, FriendName)
+VALUES(" "," ");
+INSERT INTO User_Friend (Username, FriendName)
+VALUES(" "," ");
+
+-- Insert Values into Playsist                  -- 
+
 
 -- Insert Values into the Alblum Table.         --
 
