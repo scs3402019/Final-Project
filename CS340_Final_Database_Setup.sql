@@ -86,25 +86,25 @@ VALUES("v3rononx", "Zach","RayIsaCuteDoge");
 -- Insert Values into User_Friends Table        --
 
 INSERT INTO User_Friend (Username, FriendName)
-VALUES(" "," ");
+VALUES("Zerodashzero","loialest");
 INSERT INTO User_Friend (Username, FriendName)
-VALUES(" "," ");
+VALUES("Zerodashzero","atlas884");
 INSERT INTO User_Friend (Username, FriendName)
-VALUES(" "," ");
+VALUES("Zerodashzero","Minithra");
 INSERT INTO User_Friend (Username, FriendName)
-VALUES(" "," ");
+VALUES("atlas884","Minithra");
 INSERT INTO User_Friend (Username, FriendName)
-VALUES(" "," ");
+VALUES("atlas884","bookershune");
 INSERT INTO User_Friend (Username, FriendName)
-VALUES(" "," ");
+VALUES("gaurav104","v3rononx");
 INSERT INTO User_Friend (Username, FriendName)
-VALUES(" "," ");
+VALUES("gaurav104","Swordie100");
 INSERT INTO User_Friend (Username, FriendName)
-VALUES(" "," ");
+VALUES("gaurav104","few_lor");
 INSERT INTO User_Friend (Username, FriendName)
-VALUES(" "," ");
+VALUES("v3rononx","Minithra");
 INSERT INTO User_Friend (Username, FriendName)
-VALUES(" "," ");
+VALUES("bookershune","few_lor");
 
 -- Insert Values into Playsist                  -- 
 
