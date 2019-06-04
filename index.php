@@ -31,7 +31,7 @@
                 <div class="col-md-12">
                     <div class="page-header clearfix">
                         <h2 class="pull-left">Student Details</h2>
-                        <a href="createStudent.php" class="btn btn-success pull-right">Add New Student</a>
+                        <a href="createSong.php" class="btn btn-success pull-right">Add New Song</a><br><br><a href="createPlaylist.php" class="btn btn-success pull-right">Create Playlist</a>
                     </div>
                     <?php
                     // Include config file
