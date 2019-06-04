@@ -30,7 +30,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="page-header clearfix">
-                        <h2 class="pull-left">Student Details</h2>
+                        <h2 class="pull-left">All Songs</h2>
                         <a href="createSong.php" class="btn btn-success pull-right">Add New Song</a><br><br><a href="createPlaylist.php" class="btn btn-success pull-right">Create Playlist</a>
                     </div>
                     <?php
