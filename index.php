@@ -17,6 +17,14 @@
         table tr td:last-child a{
             margin-right: 15px;
         }
+		body {
+			background-color: #3E3E3E;
+			color: #4671C4;
+		}
+		.btn {
+			background-color: #4671C4;
+			border-color:#4671C4;
+		}
     </style>
     <script type="text/javascript">
         $(document).ready(function(){
@@ -59,7 +67,7 @@
                                         echo "<td>" . $row['Release_date'] . "</td>";
                                         echo "<td>" . $row['Performer'] . "</td>";
 										echo "<td>";
-											echo "<a href='accept.php?sID=". $row['Name'] ."' title='Add to Playlist' data-toggle='tooltip'><span class='glyphicon glyphicon-plus-sign'></span></a>";
+											echo "<a href='Playlists.php". $row['Name'] ."' title='Add to Playlist' data-toggle='tooltip'><span class='glyphicon glyphicon-plus-sign'></span></a>";
 										echo "</td>";
                                     echo "</tr>";
                                 }
