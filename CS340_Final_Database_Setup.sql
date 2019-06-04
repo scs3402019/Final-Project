@@ -1,226 +1,252 @@
-/*
--- CS 340 SPRING 2019 --
--- Final project SQL Table setups --
--- Group:                         -- 
--- Arin Reinsch                   --
--- Justin Vaughn                  --
--- Anthony Plant                  --
--- Modified 5/23                  --
-*/
+-- phpMyAdmin SQL Dump
+-- version 4.8.5
+-- https://www.phpmyadmin.net/
+--
+-- Host: classmysql.engr.oregonstate.edu:3306
+-- Generation Time: Jun 03, 2019 at 06:49 PM
+-- Server version: 10.3.13-MariaDB-log
+-- PHP Version: 7.0.33
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
+SET time_zone = "+00:00";
 
 
--- Make sure that null values are not allowed for important fields
--- Create All Tables for the music database.  --
-CREATE TABLE Artist (
-    Name  VARCHAR(64),
-    Street VARCHAR(64) NULL,
-    City VARCHAR(64),
-    State VARCHAR(16),
-    Genre VARCHAR(16)
-    PRIMARY KEY (NAME)
-);
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
 
-CREATE TABLE Users (
-    Username VARCHAR(64) NOT NULL,
-    Password VARCHAR(128) NOT NULL,
-    F_Username VARCHAR(64) NOT NULL  
-    PRIMARY KEY (Username)
-    FOREIGN KEY (F_Username) REFERENCES User_Friend(Username)
-);
+--
+-- Database: `cs340_reinscha`
+--
 
-CREATE TABLE Alblum (
-      Cover VARBINARY(MAX),
-      Writer VARCHAR(64),
-      Release_Date DATE,
-      Name VARCHAR(64) NOT NULL 
-      PRIMARY KEY (Name)
-      FOREIGN KEY (Writer) REFERENCES Artist(Name)
-);
+-- --------------------------------------------------------
 
-CREATE TABLE Song (
-    Title VARCHAR(64) NOT NULL,
-    Length VARCHAR(16),
-    Release_Date DATE,
-    Performer VARCHAR(64) 
-    FOREIGN KEY (Performer) REFERENCES Alblum(Writer)
-);
+--
+-- Table structure for table `Alblum`
+--
 
-CREATE TABLE PlayList (
-    Playlist_name VARCHAR(64),
-    Arist VARCHAR(64),
-    Alblum VARCHAR(64),
-    Title VARCHAR(64)
-    UNIQUE (Playlist_name)
-    FOREIGN KEY (Artist, Alblum,Title) REFERENCES Alblum(Writer, Name, Tilte)
-);
+CREATE TABLE `Alblum` (
+  `Writer` varchar(64) NOT NULL,
+  `Release_Date` date DEFAULT NULL,
+  `Name` varchar(64) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-CREATE TABLE User_Friend (
-    Username VARCHAR(64),
-    Friend VARCHAR(64)
-    PRIMARY KEY (Username) 
-);
+--
+-- Dumping data for table `Alblum`
+--
 
--- Insert Values into the Alblum Table.         --
+INSERT INTO `Alblum` (`Writer`, `Release_Date`, `Name`) VALUES
+('Ces Cru', '0000-00-00', 'Catestrophic Event Specilaists'),
+('Counting Crows', '0000-00-00', 'Shre 2(soundtrack)'),
+('DC Talk', '0000-00-00', 'Jesus Freak'),
+('Eagele Eye Cherry', '0000-00-00', 'Desireless'),
+('Eminem', '0000-00-00', 'Kamikazie'),
+('Garth Brooks', '0000-00-00', 'Ropin the Wind'),
+('Goo Goo Dolls', '0000-00-00', 'City of Angels'),
+('Jarren Benton', '0000-00-00', 'Skitzo - Single'),
+('Jedi Mind Tricks', '0000-00-00', 'Violence Begets Violence'),
+('Lifehouse', '0000-00-00', 'Who We Are'),
+('Logic', '0000-00-00', 'Confessions of A Dangerous Mind'),
+('Logic?', '0000-00-00', 'My Movie'),
+('Mac Lethal', '0000-00-00', 'Congratulations'),
+('Matchbox 20', '0000-00-00', 'More Than You Think You Are'),
+('MGK', '0000-00-00', 'Lace Up'),
+('Nena', '0000-00-00', '99 Luftballons'),
+('Odd Future', '0000-00-00', 'The OF Tape Vol 2'),
+('P.O.D', '0000-00-00', 'Satellite'),
+('Pusha T', '0000-00-00', 'Spotify Sessions'),
+('Skillet', '0000-00-00', 'Unleashed'),
+('Tech N9ne', NULL, 'Something Else'),
+('Thousand Foot Krutch', '0000-00-00', 'Exhale'),
+('Tyler The Creator', NULL, 'OKRA');
 
-INSERT INTO Alblum (Writer, Release_Date, Name)
-VALUES ('DC Talk', 11/21/1995 , 'Jesus Freak');
-INSERT INTO Alblum (Writer, Release_Date, Name)
-VALUES ('Skillet', 01/24/2017, 'Unleashed');
-INSERT INTO Alblum (Writer, Release_Date, Name)
-VALUES ('Lifehouse', 03/22/2005, 'Who We Are');
-INSERT INTO Alblum (Writer, Release_Date, Name)
-VALUES ('Eagele Eye Cherry', 08/16/2008, 'Desireless');
-INSERT INTO Alblum (Writer, Release_Date, Name)
-VALUES ('Matchbox 20', 11/19/2002, 'More Than You Think You Are');
-INSERT INTO Alblum (Writer, Release_Date, Name)
-VALUES ('Nena', 04/08/1984, '99 Luftballons');
-INSERT INTO Alblum (Writer, Release_Date, Name)
-VALUES ('Thousand Foot Krutch', 06/17/2016, 'Exhale');
-INSERT INTO Alblum (Writer, Release_Date, Name)
-VALUES ('Counting Crows', 07/05/2004, 'Shre 2(soundtrack)');
-INSERT INTO Alblum (Writer, Release_Date, Name)
-VALUES ('Goo Goo Dolls', 04/07/1998, 'City of Angels');
-INSERT INTO Alblum (Writer, Release_Date, Name)
-VALUES ('Garth Brooks', 09/02/1991, 'Ropin the Wind');
-INSERT INTO Alblum (Writer, Release_Date, Name)
-VALUES ('P.O.D', 09/11/2001, 'Satellite');
+-- --------------------------------------------------------
 
-INSERT INTO Alblum (Writer, Release_Date, Name)
-VALUES ('Eminem', 08/31/2018, 'Kamikazie');
-INSERT INTO Alblum (Writer, Release_Date, Name)
-VALUES ('Logic', 05/01/2019, 'Confessions of A Dangerous Mind');
-INSERT INTO Alblum (Writer, Release_Date, Name)
-VALUES ('Tyler The Creator', 03/21/0000, 'OKRA');
-INSERT INTO Alblum (Writer, Release_Date, Name)
-VALUES ('Ces Cru', 10/30/2015, 'Catestrophic Event Specilaists');
-INSERT INTO Alblum (Writer, Release_Date, Name)
-VALUES ('MGK', 10/05/2012, 'Lace Up');
-INSERT INTO Alblum (Writer, Release_Date, Name)
-VALUES ('Jedi Mind Tricks', 12/22/2011, 'Violence Begets Violence');
-INSERT INTO Alblum (Writer, Release_Date, Name)
-VALUES ('Tech N9ne', 00/00/0000, 'Something Else');
-INSERT INTO Alblum (Writer, Release_Date, Name)
-VALUES ('Odd Future', 03/20/2012, 'The OF Tape Vol 2');
-INSERT INTO Alblum (Writer, Release_Date, Name)
-VALUES ('Pusha T', 10/07/2013, 'Spotify Sessions');
-INSERT INTO Alblum (Writer, Release_Date, Name)
-VALUES ('Mac Lethal', 09/06/2016, 'Congratulations');
-INSERT INTO Alblum (Writer, Release_Date, Name)
-VALUES ('Jarren Benton', 10/03/2014, 'Skitzo - Single');
-INSERT INTO Alblum (Writer, Release_Date, Name)
-VALUES ('Logic?', 05/05/2015, 'My Movie');
+--
+-- Table structure for table `Artist`
+--
 
-INSERT INTO Alblum (Writer, Release_Date, Name)
-VALUES ('', 00/00/0000, '');
+CREATE TABLE `Artist` (
+  `Name` varchar(64) NOT NULL,
+  `Street` varchar(64) DEFAULT NULL,
+  `City` varchar(64) DEFAULT NULL,
+  `State` varchar(16) DEFAULT NULL,
+  `Genre` varchar(16) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- Testing Image storage here, may need some php to access --
-INSERT INTO Alblum (Writer, Release_Date, Name, Cover)
-VALUES ('', 00/00/0000, '', (SELECT * FROM OPENROWSET(BULK N'%CD%\AlblumCovers\<albname>', SINGLE_BLOB)));
+--
+-- Dumping data for table `Artist`
+--
 
+INSERT INTO `Artist` (`Name`, `Street`, `City`, `State`, `Genre`) VALUES
+('Barenaked Ladies', NULL, 'Ontaria', 'Canada', 'Alternative Rock'),
+('Ces Cru', NULL, 'Kansas City', 'Missouri', 'Rap'),
+('Counting Crows', NULL, 'Berkeley', 'California', 'Alternative Rock'),
+('DC Talk', NULL, 'Lynchburg', 'Virgina', 'Christian Rock'),
+('Eagel Eye Cherry', NULL, 'Sockholm', 'Sweden', 'Rock'),
+('Eminem', NULL, 'Clinton Township', 'Michigan', 'Rap'),
+('Garth Brooks', NULL, 'Tusla', 'Oklahoma', 'Country'),
+('Goo Goo Dolls', NULL, 'Buffalo', 'New York', 'Alternative Rock'),
+('Jarren Benton', NULL, 'Decatur', 'Georgia', 'Hip Hop'),
+('Jedi Mind Tricks', NULL, 'Philadelphia', 'Pennsylvania', 'Rap'),
+('Lifehouse', NULL, 'Los Angeles', 'California', 'Alternative Rock'),
+('Logic', NULL, 'Beverly Hills', 'California', 'Rap'),
+('Logic?', NULL, NULL, NULL, 'Hip Hop'),
+('Mac Lethal', NULL, 'Kansas City', 'Missouri', 'Rap'),
+('Matchbox 20', NULL, 'Orlando', 'Florida', 'Alternative Rock'),
+('MGK', NULL, 'Houston', 'Texas', 'Rap'),
+('Nena', NULL, 'West Berlin', 'Germany', 'Rock'),
+('Odd Future', NULL, 'Los Angeles', 'California', 'Alternative Hip '),
+('P.O.D', NULL, 'San Diego', 'California', 'Christian Metal'),
+('Push T', NULL, 'New York City', 'New York', 'Hip Hop'),
+('Skillet', NULL, 'Memphis', 'Tennessee', 'Chirstina Rock'),
+('Tech N9ne', NULL, 'Kasas City', 'Missouri', 'Rap'),
+('Thousand Foot Krutch', NULL, 'Ontario', 'Canada', 'Christian Rock'),
+('Tyler the Creator', NULL, 'Ladera Heights', 'California', 'Rap');
 
--- Insert values into Artist                     --
+-- --------------------------------------------------------
 
-INSERT INTO Artist (Name, Street, City, State, Genre)
-VALUES ('DC Talk',NULL,'Lynchburg','Virgina','Christian Rock');
-INSERT INTO Artist (Name, Street, City, State, Genre)
-VALUES ('Skillet',NULL,'Memphis','Tennessee','Chirstina Rock');
-INSERT INTO Artist (Name, Street, City, State, Genre)
-VALUES ('Lifehouse',NULL,'Los Angeles','California','Alternative Rock');
-INSERT INTO Artist (Name, Street, City, State, Genre)
-VALUES ('Eagel Eye Cherry',NULL,'Sockholm','Sweden','Rock');
-INSERT INTO Artist (Name, Street, City, State, Genre)
-VALUES ('Matchbox 20',NULL,'Orlando','Florida','Alternative Rock');
-INSERT INTO Artist (Name, Street, City, State, Genre)
-VALUES ('Barenaked Ladies',NULL,'Ontaria','Canada','Alternative Rock');
-INSERT INTO Artist (Name, Street, City, State, Genre)
-VALUES ('Nena',NULL,'West Berlin','Germany','Rock');
-INSERT INTO Artist (Name, Street, City, State, Genre)
-VALUES ('Thousand Foot Krutch',NULL,'Ontario','Canada','Christian Rock');
-INSERT INTO Artist (Name, Street, City, State, Genre)
-VALUES ('Counting Crows',NULL,'Berkeley','California','Alternative Rock');
-INSERT INTO Artist (Name, Street, City, State, Genre)
-VALUES ('Goo Goo Dolls',NULL,'Buffalo','New York','Alternative Rock');
-INSERT INTO Artist (Name, Street, City, State, Genre)
-VALUES ('Garth Brooks',NULL,'Tusla','Oklahoma','Country');
-INSERT INTO Artist (Name, Street, City, State, Genre)
-VALUES ('P.O.D',NULL,'San Diego','California','Christian Metal');
+--
+-- Table structure for table `Playlist`
+--
 
+CREATE TABLE `Playlist` (
+  `Playlist_name` varchar(64) NOT NULL,
+  `Artist` varchar(64) NOT NULL,
+  `Alblum` varchar(64) NOT NULL,
+  `Title` varchar(64) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+-- --------------------------------------------------------
 
+--
+-- Table structure for table `Song`
+--
 
-INSERT INTO Artist (Name, Street, City, State, Genre)
-VALUES ('Logic',NULL,'Beverly Hills','California','Rap');
-INSERT INTO Artist (Name, Street, City, State, Genre)
-VALUES ('Eminem',NULL,'Clinton Township','Michigan','Rap');
-INSERT INTO Artist (Name, Street, City, State, Genre)
-VALUES ('Tyler the Creator',NULL,'Ladera Heights','California','Rap');
-INSERT INTO Artist (Name, Street, City, State, Genre)
-VALUES ('Ces Cru',NULL,'Kansas City','Missouri','Rap');
-INSERT INTO Artist (Name, Street, City, State, Genre)
-VALUES ('MGK',NULL,'Houston','Texas','Rap');
-INSERT INTO Artist (Name, Street, City, State, Genre)
-VALUES ('Jedi Mind Tricks',NULL,'Philadelphia','Pennsylvania','Rap');
-INSERT INTO Artist (Name, Street, City, State, Genre)
-VALUES ('Tech N9ne',NULL,'Kasas City','Missouri','Rap');
-INSERT INTO Artist (Name, Street, City, State, Genre)
-VALUES ('Odd Future',NULL,'Los Angeles','California','Alternative Hip Hop');
-INSERT INTO Artist (Name, Street, City, State, Genre)
-VALUES ('Push T',NULL,'New York City','New York','Hip Hop');
-INSERT INTO Artist (Name, Street, City, State, Genre)
-VALUES ('Mac Lethal',NULL,'Kansas City','Missouri','Rap');
-INSERT INTO Artist (Name, Street, City, State, Genre)
-VALUES ('Jarren Benton',NULL,'Decatur','Georgia','Hip Hop');
-INSERT INTO Artist (Name, Street, City, State, Genre)
-VALUES ('Logic?',NULL,NULL,NULL,'Hip Hop');
+CREATE TABLE `Song` (
+  `Name` varchar(64) NOT NULL,
+  `Length` varchar(16) NOT NULL,
+  `Performer` varchar(64) NOT NULL,
+  `Release_date` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- Insert values into Song                       --
+--
+-- Dumping data for table `Song`
+--
 
-INSERT INTO Song (Performer, Name, Length, Release_Date)
-VALUES ('DC Talk', 'Jesus Freak', '4:50', 11/21/1995);
-INSERT INTO Song (Tilte, Performer, Length, Release_Date)
-VALUES ('Skillet', 'Resistance', '3:08', 08/05/2016);
-INSERT INTO Song (Tilte, Performer, Length, Release_Date)
-VALUES ('Lifehouse', 'Clocks', '4:24', 11/20/2007);
-INSERT INTO Song (Tilte, Performer, Length, Release_Date)
-VALUES ('Eagel Eye Cherry', 'Save Tonght', '3:11', 10/06/1997);
-INSERT INTO Song (Tilte, Performer, Length, Release_Date)
-VALUES ('Matchbox 20', 'Unwell', '3:48', 10/26/2009);
-INSERT INTO Song (Tilte, Performer, Length, Release_Date)
-VALUES ('Barenaked Ladies', 'Pinch Me', '3:49', 10/26/2009);
-INSERT INTO Song (Tilte, Performer, Length, Release_Date)
-VALUES ('Nena', '99 Luftballons', '3:49', 07/29/2006);
-INSERT INTO Song (Tilte, Performer, Length, Release_Date)
-VALUES ('Thousand Foot Krutch', 'Running With Giants', '4:09', 02/25/2016);
-INSERT INTO Song (Tilte, Performer, Length, Release_Date)
-VALUES ('Counting Crows', 'Accidentally in Love', '3:08', 10/13/2010);
-INSERT INTO Song (Tilte, Performer, Length, Release_Date)
-VALUES ('Goo Goo Dolls', 'Iris', '3:36', 02/26/2010);
-INSERT INTO Song (Tilte, Performer, Length, Release_Date)
-VALUES ('Garth Brooks', 'Against the Grain', '2:23', 06/16/2016);
-INSERT INTO Song (Tilte, Performer, Length, Release_Date)
-VALUES ('P.O.D', 'Alive', '3:39', 02/13/2011);
+INSERT INTO `Song` (`Name`, `Length`, `Performer`, `Release_date`) VALUES
+('Mac Lethal', '3:09', 'Angel of Death', '0000-00-00'),
+('Pinch Me', '3:49', 'Barenaked Ladies', '0000-00-00'),
+('Accidentally in Love', '3:08', 'Counting Crows', '0000-00-00'),
+('Jesus Freak', '4:50', 'DC Talk', '0000-00-00'),
+('Jedi Mind Tricks', '3:56', 'Design in Malilce', '0000-00-00'),
+('Save Tonght', '3:11', 'Eagel Eye Cherry', '0000-00-00'),
+('MGK', '5:07', 'Edge of Destruction', '0000-00-00'),
+('Eminem', '4:22', 'Fall', '0000-00-00'),
+('Against the Grain', '2:23', 'Garth Brooks', '0000-00-00'),
+('Iris', '3:36', 'Goo Goo Dolls', '0000-00-00'),
+('Logic?', '4:14', 'Hello World', '0000-00-00'),
+('Logic', '4:05', 'Homicide', '0000-00-00'),
+('Clocks', '4:24', 'Lifehouse', '0000-00-00'),
+('Unwell', '3:48', 'Matchbox 20', '0000-00-00'),
+('99 Luftballons', '3:49', 'Nena', '0000-00-00'),
+('Tyler the Creator', '2:31', 'OKRA', '0000-00-00'),
+('Odd Future', '10:38', 'Oldie', '0000-00-00'),
+('Alive', '3:39', 'P.O.D', '0000-00-00'),
+('Ces Cru', '4:06', 'Recession Proof', '0000-00-00'),
+('Resistance', '3:08', 'Skillet', '0000-00-00'),
+('Jarren Benton', '3:38', 'Skitzo', '0000-00-00'),
+('Tech N9ne', '4:26', 'So Dope', '0000-00-00'),
+('Pusha T', '3:59', 'Sweet Serenade', '0000-00-00'),
+('Running With Giants', '4:09', 'Thousand Foot Krutch', '0000-00-00');
 
-INSERT INTO Song (Performer, Name, Length, Release_Date)
-VALUES ('Fall','Eminem','4:22', 08/31/2018);
-INSERT INTO Song (Performer, Name, Length, Release_Date)
-VALUES ('Homicide','Logic','4:05',05/01/2019);
-INSERT INTO Song (Performer, Name, Length, Release_Date)
-VALUES ('OKRA','Tyler the Creator','2:31',03/21/2018);
-INSERT INTO Song (Performer, Name, Length, Release_Date)
-VALUES ('Recession Proof','Ces Cru','4:06',10/30/2015);
-INSERT INTO Song (Performer, Name, Length, Release_Date)
-VALUES ('Edge of Destruction','MGK','5:07',10/05/2012);
-INSERT INTO Song (Performer, Name, Length, Release_Date)
-VALUES ('Design in Malilce','Jedi Mind Tricks','3:56',12/22/2011);
-INSERT INTO Song (Performer, Name, Length, Release_Date)
-VALUES ('So Dope','Tech N9ne','4:26',07/25/2013);
-INSERT INTO Song (Performer, Name, Length, Release_Date)
-VALUES ('Oldie','Odd Future','10:38',03/20/2012);
-INSERT INTO Song (Performer, Name, Length, Release_Date)
-VALUES ('Sweet Serenade','Pusha T','3:59',10/07/2013);
-INSERT INTO Song (Performer, Name, Length, Release_Date)
-VALUES ('Angel of Death','Mac Lethal','3:09',09/06/2016);
-INSERT INTO Song (Performer, Name, Length, Release_Date)
-VALUES ('Skitzo','Jarren Benton','3:38',10/03/2014);
-INSERT INTO Song (Performer, Name, Length, Release_Date)
-VALUES ('Hello World','Logic?','4:14',05/05/2015);
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `Users`
+--
+
+CREATE TABLE `Users` (
+  `Username` varchar(64) NOT NULL,
+  `Fname` varchar(64) NOT NULL,
+  `Password` varchar(128) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `Users`
+--
+
+INSERT INTO `Users` (`Username`, `Fname`, `Password`) VALUES
+('atlas884', 'Sara', 'SuperSecretKey'),
+('bookershune', 'Bella', 'Dodge:5:'),
+('few_lor', 'Karol', 'asdf32345sd*7'),
+('gaurav104', 'Neil', 'LetmeInnnnn'),
+('loialest', 'Jimmothy', '1234'),
+('lowko', 'Tim', 'PleaseDontHackMe'),
+('Minithra', 'Tony', 'CheeseIsGood'),
+('Swordie100', 'Nancy', 'SQLBeCool'),
+('v3rononx', 'Zach', 'RayIsaCuteDoge'),
+('Zerodashzero', 'Bob', 'Password');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `User_Friend`
+--
+
+CREATE TABLE `User_Friend` (
+  `Username` varchar(64) NOT NULL,
+  `Friendname` varchar(64) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `User_Friend`
+--
+
+INSERT INTO `User_Friend` (`Username`, `Friendname`) VALUES
+('Zerodashzero', 'loialest'),
+('Zerodashzero', 'atlas884'),
+('Zerodashzero', 'Minithra'),
+('atlas884', 'Minithra'),
+('atlas884', 'bookershune'),
+('gaurav104', 'v3rononx'),
+('gaurav104', 'Swordie100'),
+('gaurav104', 'few_lor'),
+('v3rononx', 'Minithra'),
+('bookershune', 'few_lor');
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `Alblum`
+--
+ALTER TABLE `Alblum`
+  ADD PRIMARY KEY (`Writer`);
+
+--
+-- Indexes for table `Artist`
+--
+ALTER TABLE `Artist`
+  ADD PRIMARY KEY (`Name`);
+
+--
+-- Indexes for table `Song`
+--
+ALTER TABLE `Song`
+  ADD PRIMARY KEY (`Performer`);
+
+--
+-- Indexes for table `Users`
+--
+ALTER TABLE `Users`
+  ADD PRIMARY KEY (`Username`);
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
