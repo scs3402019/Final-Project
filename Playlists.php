@@ -3,15 +3,27 @@
 	require_once "config.php";
 
 	//Define Variables
-	$Playlist = "";
-	$Playlist_err = "";
+	$Playlist = $Album = $Title = $Artist = $result = "";
+	$Playlist_err = $Album_err = $Title_err = $Artist_err = "";
 
 	$sName =  trim($_GET["Name"]);
-
-	//Validate Playlist
-	$Playlist = trim($_POST["Playlist"]);
-	if (empty($Playlist)){
-		$Playlist_err = "Please enter a Playlist name";
+	
+	
+	if($_SERVER["REQUEST_METHOD"] == "POST"){
+		//Validate Playlist
+		$Playlist = trim($_POST["Playlist"]);
+		if (empty($Playlist)){
+			$Playlist_err = "Please enter a Playlist name";
+		}
+		/*if(empty($Playlist_err) && ){
+			//Prepare insert Statement
+			$sql = "INSERT INTO Playlist(Playlist_name, Artist, Album, Title) VALUES (?,?,?,?)";
+			
+			if($stmt = mysqli_prepare($link, $sql)){
+				// Bind variables to the prepared statement as parameters
+				mysqli_stmt_bind_param($stmt, "ssss", $param_Playlist, $param_Artist, $param_Album, $param_Title);
+			}
+		}*/
 	}
 ?>
 
@@ -40,8 +52,16 @@
                     <form action="<?php echo htmlspecialchars(basename($_SERVER['REQUEST_URI'])); ?>" method="post">
                         <div class="form-group <?php echo (!empty($Playlist_err)) ? 'has-error' : ''; ?>">
                             <label>Playlist</label>
-                            <input type="text" name="Playlist" class="form-control" value="<?php echo $Playlist; ?>">
-                            <span class="help-block"><?php echo $Playlist_err;?></span>
+                            <?php
+								$sql = "SELECT * FROM Playlist";
+								if($result = mysqli_query($link, $sql)){
+									echo "<select>";
+									while ($row = mysql_fetch_array($result)) {
+										echo "<option> value='" . $row['Playlist_name'] . "'>" . $row['Playlist_name'] . "</option>";
+									}
+									echo "</select>";
+								}
+							?>
                         </div>
                         <input type="submit" class="btn btn-primary" value="Submit">
                         <a href="index.php" class="btn btn-default">Cancel</a>

@@ -54,9 +54,8 @@
                                     echo "<tr>";
                                         echo "<th>Title</th>";
                                         echo "<th>Length</th>";
-                                        echo "<th>Release Date</th>";
                                         echo "<th>Artist</th>";
-										echo "<th>Add to Playlist</th>";
+					echo "<th>Add to Playlist</th>";
                                     echo "</tr>";
                                 echo "</thead>";
                                 echo "<tbody>";
@@ -64,10 +63,9 @@
                                     echo "<tr>";
                                         echo "<td>" . $row['Name'] . "</td>";
                                         echo "<td>" . $row['Length'] . "</td>";
-                                        echo "<td>" . $row['Release_date'] . "</td>";
                                         echo "<td>" . $row['Performer'] . "</td>";
 										echo "<td>";
-											echo "<a href='Playlists.php". $row['Name'] ."' title='Add to Playlist' data-toggle='tooltip'><span class='glyphicon glyphicon-plus-sign'></span></a>";
+											echo "<a href='Playlists.php?Name=". $row['Name'] ."' title='Add to Playlist' data-toggle='tooltip'><span class='glyphicon glyphicon-plus-sign'></span></a>";
 										echo "</td>";
                                     echo "</tr>";
                                 }
