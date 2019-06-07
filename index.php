@@ -25,6 +25,9 @@
 			background-color: #4671C4;
 			border-color:#4671C4;
 		}
+	    th {
+			text-align: center;
+		}
     </style>
     <script type="text/javascript">
         $(document).ready(function(){
@@ -38,7 +41,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="page-header clearfix">
-                        <h2 class="pull-left">All Songs</h2>
+                        <h2 class="pull-left"><img src="songbird.jfif" height=25px> Songbird</h2>
                         <a href="createSong.php" class="btn btn-success pull-right">Add New Song</a><br><br><a href="createPlaylist.php" class="btn btn-success pull-right">Create Playlist</a>
                     </div>
                     <?php
@@ -61,10 +64,10 @@
                                 echo "<tbody>";
                                 while($row = mysqli_fetch_array($result)){
                                     echo "<tr>";
-                                        echo "<td>" . $row['Name'] . "</td>";
-                                        echo "<td>" . $row['Length'] . "</td>";
-                                        echo "<td>" . $row['Performer'] . "</td>";
-										echo "<td>";
+                                        echo "<td align=center>" . $row['Name'] . "</td>";
+                                        echo "<td align=center>" . $row['Length'] . "</td>";
+                                        echo "<td align=center>" . $row['Performer'] . "</td>";
+										echo "<td align=center>";
 											echo "<a href='Playlists.php?Name=". $row['Name'] ."' title='Add to Playlist' data-toggle='tooltip'><span class='glyphicon glyphicon-plus-sign'></span></a>";
 										echo "</td>";
                                     echo "</tr>";
