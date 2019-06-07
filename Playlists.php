@@ -55,11 +55,13 @@
                             <?php
 								$sql = "SELECT * FROM Playlist";
 								if($result = mysqli_query($link, $sql)){
-									echo "<select>";
-									while ($row = mysql_fetch_array($result)) {
-										echo "<option> value='" . $row['Playlist_name'] . "'>" . $row['Playlist_name'] . "</option>";
+									if(mysqli_num_rows($result) > 0){
+										echo "<select>";
+										while ($row = mysqli_fetch_array($result)) {
+											echo "<option value='" . $row['Playlist_name'] . "'>" . $row['Playlist_name'] . "</option>";
+										}
+										echo "</select>";
 									}
-									echo "</select>";
 								}
 							?>
                         </div>
