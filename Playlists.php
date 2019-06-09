@@ -11,19 +11,42 @@
 	
 	if($_SERVER["REQUEST_METHOD"] == "POST"){
 		//Validate Playlist
-		$Playlist = trim($_POST["Playlist"]);
+		$Playlist = trim($_POST["playlistAdd"]);
 		if (empty($Playlist)){
 			$Playlist_err = "Please enter a Playlist name";
 		}
-		/*if(empty($Playlist_err) && ){
-			//Prepare insert Statement
-			$sql = "INSERT INTO Playlist(Playlist_name, Artist, Album, Title) VALUES (?,?,?,?)";
+		// Check input errors before inserting in database
+		if(empty($Playlist_name_err)){
+			// Prepare an insert statement
+			$sqlInsert = "INSERT INTO Playlist (Playlist_name, Artist, Album, Title) VALUES (?, ?, ?, ?)";
 			
-			if($stmt = mysqli_prepare($link, $sql)){
-				// Bind variables to the prepared statement as parameters
+			if($stmt = mysqli_prepare($link, $sqlInsert)){
 				mysqli_stmt_bind_param($stmt, "ssss", $param_Playlist, $param_Artist, $param_Album, $param_Title);
+				
+				$sqlSong = "SELECT * FROM Song WHERE Name LIKE '" . $sName . "'";
+				$resultSong = mysqli_query($link,$sqlSong);
+				$rowSong = mysqli_fetch_array($resultSong);
+				$param_Artist = $rowtSong['Performer'];
+				$param_Title = $rowtSong['Name'];
+				
+				$sqlAlbum = "SELECT * FROM Album WHERE Write LIKE '" . $param_Artist . "'";
+				$resultAlbum = mysqli_query($link, $sqlAlbum);
+				$rowAlbmu = mysqli_fetch_array($resultAlbum);
+				$param_Album = $rowAlbum['Name'];
+				
+				mysqli_free_result($resultAlbum);
+				mysqli_free_result($resultSong);
+				
+				if(mysqli_stmt_execute($stmt)){
+					// Records created successfully. Redirect to landing page
+					header("location: index.php");
+					exit();
+				} else{
+					$Title_err = "Already in that playlist, please select a different one.";
+				}
+				mysqli_stmt_close($stmt);
 			}
-		}*/
+		}
 	}
 ?>
 
@@ -56,13 +79,15 @@
 								$sql = "SELECT * FROM Playlist";
 								if($result = mysqli_query($link, $sql)){
 									if(mysqli_num_rows($result) > 0){
-										echo "<select>";
+										echo "<select name='playlistAdd'>";
 										while ($row = mysqli_fetch_array($result)) {
 											echo "<option value='" . $row['Playlist_name'] . "'>" . $row['Playlist_name'] . "</option>";
 										}
 										echo "</select>";
 									}
 								}
+								mysqli_free_result($result);
+								mysqli_close($link);
 							?>
                         </div>
                         <input type="submit" class="btn btn-primary" value="Submit">
