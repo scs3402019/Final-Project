@@ -25,20 +25,20 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `Alblum`
+-- Table structure for table `Album`
 --
 
-CREATE TABLE `Alblum` (
+CREATE TABLE `Album` (
   `Writer` varchar(64) NOT NULL,
   `Release_Date` date DEFAULT NULL,
   `Name` varchar(64) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `Alblum`
+-- Dumping data for table `Album`
 --
 
-INSERT INTO `Alblum` (`Writer`, `Release_Date`, `Name`) VALUES
+INSERT INTO `Album` (`Writer`, `Release_Date`, `Name`) VALUES
 ('Ces Cru', '0000-00-00', 'Catestrophic Event Specilaists'),
 ('Counting Crows', '0000-00-00', 'Shre 2(soundtrack)'),
 ('DC Talk', '0000-00-00', 'Jesus Freak'),
@@ -116,7 +116,7 @@ INSERT INTO `Artist` (`Name`, `Street`, `City`, `State`, `Genre`) VALUES
 CREATE TABLE `Playlist` (
   `Playlist_name` varchar(64) NOT NULL,
   `Artist` varchar(64) NOT NULL,
-  `Alblum` varchar(64) NOT NULL,
+  `Album` varchar(64) NOT NULL,
   `Title` varchar(64) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -223,9 +223,9 @@ INSERT INTO `User_Friend` (`Username`, `Friendname`) VALUES
 --
 
 --
--- Indexes for table `Alblum`
+-- Indexes for table `Album`
 --
-ALTER TABLE `Alblum`
+ALTER TABLE `Album`
   ADD PRIMARY KEY (`Writer`);
 
 --
