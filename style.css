@@ -9,6 +9,11 @@ body{
   border-color:#4671C4;
 };
 
+.btn-success{
+  background-color: #4671C4;
+  border-color:#4671C4;
+};
+
 .btn:hover{
   background-color: #4671C4;
   border-color:#4671C4;
