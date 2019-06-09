@@ -23,10 +23,10 @@
 			if($stmt = mysqli_prepare($link, $sqlInsert)){
 				mysqli_stmt_bind_param($stmt, "ssss", $param_Playlist, $param_Artist, $param_Album, $param_Title);
 				
-				$param_Playlist = $Playlist;
-				$param_Album = $Album;
-				$param_Artist = $Artist;
-				$param_Title = $Title;
+				$param_Playlist = trim($_POST['$Playlist']);
+				$param_Album = trim($_POST['$Album']);
+				$param_Artist = trim($_POST['$Artist']);
+				$param_Title = trim($_POST['$Title']);
 				
 				
 				if(mysqli_stmt_execute($stmt)){
@@ -50,7 +50,7 @@
     <meta charset="UTF-8">
     <title>Add to Playlist</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">
-	<script src="style.css"></script>
+	<link rel="stylesheet" href="./style.css">
     <style type="text/css">
         .wrapper{
             width: 500px;
