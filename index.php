@@ -17,6 +17,9 @@
         table tr td:last-child a{
             margin-right: 15px;
         }
+		th {
+			text-align: center;
+		}
 		body {
 			background-color: #3E3E3E;
 			color: #4671C4;
@@ -24,9 +27,6 @@
 		.btn {
 			background-color: #4671C4;
 			border-color:#4671C4;
-		}
-	    th {
-			text-align: center;
 		}
     </style>
     <script type="text/javascript">
@@ -42,7 +42,10 @@
                 <div class="col-md-12">
                     <div class="page-header clearfix">
                         <h2 class="pull-left"><img src="songbird.jfif" height=25px> Songbird</h2>
-                        <a href="createSong.php" class="btn btn-success pull-right">Add New Song</a><br><br><a href="createPlaylist.php" class="btn btn-success pull-right">Create Playlist</a>
+						<br><br>
+                        <a href="createSong.php" class="btn btn-success pull-left">Add New Song</a>
+						<a href="createPlaylist.php" class="btn btn-success pull-left">Create Playlist</a>
+						<a href="viewPlaylist.php" class="btn btn-success pull-left">View Playlists</a>
                     </div>
                     <?php
                     // Include config file
@@ -58,7 +61,8 @@
                                         echo "<th>Title</th>";
                                         echo "<th>Length</th>";
                                         echo "<th>Artist</th>";
-					echo "<th>Add to Playlist</th>";
+										echo "<th>Album</th>";
+										echo "<th>Add to Playlist</th>";
                                     echo "</tr>";
                                 echo "</thead>";
                                 echo "<tbody>";
@@ -67,6 +71,15 @@
                                         echo "<td align=center>" . $row['Name'] . "</td>";
                                         echo "<td align=center>" . $row['Length'] . "</td>";
                                         echo "<td align=center>" . $row['Performer'] . "</td>";
+										$sqlAlbum = "SELECT * FROM Album WHERE Writer LIKE '" . $row['Performer']. "%'";
+										$resultAlbum = mysqli_query($link, $sqlAlbum);
+										$rowAlbum = mysqli_fetch_array($resultAlbum);
+										if(mysqli_num_rows($resultAlbum) > 0) {
+											echo "<td align=center>" . $rowAlbum['Name'] . "</td>";
+										} else {
+											echo "<td align=center>" . $row['Name'] . " Solo</td>";
+										}
+										mysqli_free_result($rowAlbum);
 										echo "<td align=center>";
 											echo "<a href='Playlists.php?Name=". $row['Name'] ."' title='Add to Playlist' data-toggle='tooltip'><span class='glyphicon glyphicon-plus-sign'></span></a>";
 										echo "</td>";
