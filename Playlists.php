@@ -7,6 +7,7 @@
 	$Playlist_err = $Album_err = $Title_err = $Artist_err = "";
 
 	$sName =  trim($_GET["Name"]);
+	$sAlbum = trim($_GET["Album"]);
 	
 	
 	if($_SERVER["REQUEST_METHOD"] == "POST"){
@@ -23,19 +24,14 @@
 			if($stmt = mysqli_prepare($link, $sqlInsert)){
 				mysqli_stmt_bind_param($stmt, "ssss", $param_Playlist, $param_Artist, $param_Album, $param_Title);
 				
-				$sqlSong = "SELECT * FROM Song WHERE Name LIKE '" . $sName . "'";
+				$sqlSong = "SELECT * FROM Song WHERE Name LIKE '" . $sName . "%'";
 				$resultSong = mysqli_query($link,$sqlSong);
 				$rowSong = mysqli_fetch_array($resultSong);
-				$param_Artist = $rowtSong['Performer'];
-				$param_Title = $rowtSong['Name'];
+				$param_Artist = $rowSong['Performer'];
+				$param_Title = $rowSong['Name'];
 				
-				$sqlAlbum = "SELECT * FROM Album WHERE Write LIKE '" . $param_Artist . "'";
-				$resultAlbum = mysqli_query($link, $sqlAlbum);
-				$rowAlbmu = mysqli_fetch_array($resultAlbum);
-				$param_Album = $rowAlbum['Name'];
 				
-				mysqli_free_result($resultAlbum);
-				mysqli_free_result($resultSong);
+				$param_Album = $sAlbum;
 				
 				if(mysqli_stmt_execute($stmt)){
 					// Records created successfully. Redirect to landing page
@@ -44,6 +40,8 @@
 				} else{
 					$Title_err = "Already in that playlist, please select a different one.";
 				}
+				mysqli_free_result($resultAlbum);
+				mysqli_free_result($resultSong);
 				mysqli_stmt_close($stmt);
 			}
 		}
@@ -71,7 +69,7 @@
                     <div class="page-header">
                         <h2>Add to Playlist</h2>
                     </div>
-                    <p>Please select the playlist to add <b><?php echo $sName; ?></b> to.</p>
+                    <p>Please select the playlist to add <b><?php echo $sName; echo " "; echo $sAlbum; ?></b> to.</p>
                     <form action="<?php echo htmlspecialchars(basename($_SERVER['REQUEST_URI'])); ?>" method="post">
                         <div class="form-group <?php echo (!empty($Playlist_err)) ? 'has-error' : ''; ?>">
                             <label>Playlist</label>

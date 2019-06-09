@@ -81,7 +81,7 @@
 										}
 										mysqli_free_result($rowAlbum);
 										echo "<td align=center>";
-											echo "<a href='Playlists.php?Name=". $row['Name'] ."' title='Add to Playlist' data-toggle='tooltip'><span class='glyphicon glyphicon-plus-sign'></span></a>";
+											echo "<a href='Playlists.php?Name=" . $row['Name'] . "' title='Add to Playlist' data-toggle='tooltip'><span class='glyphicon glyphicon-plus-sign'></span></a>";
 										echo "</td>";
                                     echo "</tr>";
                                 }
