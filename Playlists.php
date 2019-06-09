@@ -7,7 +7,6 @@
 	$Playlist_err = $Album_err = $Title_err = $Artist_err = "";
 
 	$sName =  trim($_GET["Name"]);
-	$sAlbum = trim($_GET["Album"]);
 	
 	
 	if($_SERVER["REQUEST_METHOD"] == "POST"){
@@ -24,18 +23,15 @@
 			if($stmt = mysqli_prepare($link, $sqlInsert)){
 				mysqli_stmt_bind_param($stmt, "ssss", $param_Playlist, $param_Artist, $param_Album, $param_Title);
 				
-				$sqlSong = "SELECT * FROM Song WHERE Name LIKE '" . $sName . "%'";
-				$resultSong = mysqli_query($link,$sqlSong);
-				$rowSong = mysqli_fetch_array($resultSong);
-				$param_Artist = $rowSong['Performer'];
-				$param_Title = $rowSong['Name'];
+				$param_Playlist = $Playlist;
+				$param_Album = $Album;
+				$param_Artist = $Artist;
+				$param_Title = $Title;
 				
-				
-				$param_Album = $sAlbum;
 				
 				if(mysqli_stmt_execute($stmt)){
 					// Records created successfully. Redirect to landing page
-					header("location: index.php");
+					header("location: viewSongs.php");
 					exit();
 				} else{
 					$Title_err = "Already in that playlist, please select a different one.";
@@ -54,6 +50,7 @@
     <meta charset="UTF-8">
     <title>Add to Playlist</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">
+	<script src="style.css"></script>
     <style type="text/css">
         .wrapper{
             width: 500px;
@@ -66,15 +63,16 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">
-                    <div class="page-header">
-                        <h2>Add to Playlist</h2>
+                    <div class="page-header clearfix">
+						<a href="index.php" class="btn btn-success pull-right">Home</a>
+                        <h2 class="pull-left"><img src="songbird.jfif" height=25px> Songbird</h2>
                     </div>
                     <p>Please select the playlist to add <b><?php echo $sName; ?></b> to.</p>
                     <form action="<?php echo htmlspecialchars(basename($_SERVER['REQUEST_URI'])); ?>" method="post">
                         <div class="form-group <?php echo (!empty($Playlist_err)) ? 'has-error' : ''; ?>">
                             <label>Playlist</label>
                             <?php
-								$sql = "SELECT * FROM Playlist";
+								$sql = "SELECT DISTINCT Playlist_name FROM Playlist";
 								if($result = mysqli_query($link, $sql)){
 									if(mysqli_num_rows($result) > 0){
 										echo "<select name='playlistAdd'>";
@@ -85,11 +83,32 @@
 									}
 								}
 								mysqli_free_result($result);
-								mysqli_close($link);
+								//mysqli_close($link);
+								
+								$sqlSong = "SELECT * FROM Song WHERE Name LIKE '" . $sName . "%'";
+								if($resultSong = mysqli_query($link, $sqlSong)){
+									if(mysqli_num_rows($resultSong) > 0){
+										$rowSong = mysqli_fetch_array($resultSong);
+										$Title = $rowSong['Name'];
+										$Artist = $rowSong['Performer'];
+										$sqlAlbum = "SELECT * FROM Album WHERE Writer LIKE '" . $rowSong['Performer'] . "%'";
+										if($resultAlbum = mysqli_query($link, $sqlAlbum)){
+											if(mysqli_num_rows($resultAlbum) > 0){
+												$rowAlbum = mysqli_fetch_array($resultAlbum);
+													$Album = $rowAlbum['Name'];
+											}else {
+												$Album = $Title . " Solo";
+											}
+										}
+									}
+								}
+								//echo "<br>" . $Title . " by " . $Artist . " on " . $Album;
+								
+								
 							?>
                         </div>
                         <input type="submit" class="btn btn-primary" value="Submit">
-                        <a href="index.php" class="btn btn-default">Cancel</a>
+                        <a href="viewSongs.php" class="btn btn-default">Cancel</a>
                     </form>
                 </div>
             </div>        

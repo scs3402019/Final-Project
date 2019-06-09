@@ -37,6 +37,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             }
         }
          
+		mysqli_free_result($result);
         // Close statement
         mysqli_stmt_close($stmt);
     }
@@ -52,6 +53,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     <meta charset="UTF-8">
     <title>Create Record</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">
+	<script src="style.css"></script>
     <style type="text/css">
         .wrapper{
             width: 500px;
@@ -64,10 +66,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">
-                    <div class="page-header">
-                        <h2>Create Playlist</h2>
+                    <div class="page-header clearfix">
+						<a href="index.php" class="btn btn-success pull-right">Home</a>
+                        <h2 class="pull-left"><img src="songbird.jfif" height=25px> Songbird</h2>
                     </div>
-                    <p>Please fill this form and submit to add a Student record to the database.</p>
+                    <p>Please fill this form and submit to add a Playlist.</p>
                     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
 						<div class="form-group <?php echo (!empty($Playlist_name_err)) ? 'has-error' : ''; ?>">
                             <label>Playlist Name</label>
