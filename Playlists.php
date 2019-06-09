@@ -69,7 +69,7 @@
                     <div class="page-header">
                         <h2>Add to Playlist</h2>
                     </div>
-                    <p>Please select the playlist to add <b><?php echo $sName; echo " "; echo $sAlbum; ?></b> to.</p>
+                    <p>Please select the playlist to add <b><?php echo $sName; ?></b> to.</p>
                     <form action="<?php echo htmlspecialchars(basename($_SERVER['REQUEST_URI'])); ?>" method="post">
                         <div class="form-group <?php echo (!empty($Playlist_err)) ? 'has-error' : ''; ?>">
                             <label>Playlist</label>
