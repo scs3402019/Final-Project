@@ -3,7 +3,7 @@
 	require_once "config.php";
 
 	//Define Variables
-	$Playlist = $Album = $Title = $Artist = $result = "";
+	//$Playlist = $Album = $Title = $Artist = $result = "";
 	$Playlist_err = $Album_err = $Title_err = $Artist_err = "";
 
 	$sName =  trim($_GET["Name"]);
@@ -24,9 +24,9 @@
 				mysqli_stmt_bind_param($stmt, "ssss", $param_Playlist, $param_Artist, $param_Album, $param_Title);
 				
 				$param_Playlist = trim($_POST['$Playlist']);
-				$param_Album = trim($_POST['$Album']);
-				$param_Artist = trim($_POST['$Artist']);
-				$param_Title = trim($_POST['$Title']);
+				$param_Album = trim($_POST['Album']);
+				$param_Artist = trim($_POST['Artist']);
+				$param_Title = trim($_POST['Title']);
 				
 				
 				if(mysqli_stmt_execute($stmt)){
@@ -36,8 +36,6 @@
 				} else{
 					$Title_err = "Already in that playlist, please select a different one.";
 				}
-				mysqli_free_result($resultAlbum);
-				mysqli_free_result($resultSong);
 				mysqli_stmt_close($stmt);
 			}
 		}
@@ -83,7 +81,6 @@
 									}
 								}
 								mysqli_free_result($result);
-								//mysqli_close($link);
 								
 								$sqlSong = "SELECT * FROM Song WHERE Name LIKE '" . $sName . "%'";
 								if($resultSong = mysqli_query($link, $sqlSong)){
@@ -95,20 +92,22 @@
 										if($resultAlbum = mysqli_query($link, $sqlAlbum)){
 											if(mysqli_num_rows($resultAlbum) > 0){
 												$rowAlbum = mysqli_fetch_array($resultAlbum);
-													$Album = $rowAlbum['Name'];
+												$Album = $rowAlbum['Name'];
 											}else {
 												$Album = $Title . " Solo";
 											}
 										}
 									}
 								}
-								//echo "<br>" . $Title . " by " . $Artist . " on " . $Album;
-								
-								
+								mysqli_free_result($resultAlbum);
+								mysqli_free_result($resultSong);
 							?>
                         </div>
                         <input type="submit" class="btn btn-primary" value="Submit">
                         <a href="viewSongs.php" class="btn btn-default">Cancel</a>
+						<input type="hidden" name="Title" value="<?php echo $Title ?>">
+						<input type="hidden" name="Album" value="<?php echo $Album ?>">
+						<input type="hidden" name="Artist" value="<?php echo $Artist ?>">
                     </form>
                 </div>
             </div>        
