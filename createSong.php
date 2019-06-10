@@ -68,6 +68,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     <meta charset="UTF-8">
     <title>Create Record</title>
     <link rel="stylesheet" href="./style.css">
+	<!--<link rel="stylesheet" href="./style-primary.css">-->
     <style type="text/css">
         .wrapper{
             width: 500px;
