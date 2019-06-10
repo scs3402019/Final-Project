@@ -14,7 +14,7 @@
 <head>
     <meta charset="UTF-8">
     <title>View Playlists</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="./style.css">
     <style type="text/css">
         .wrapper{
             width: 500px;

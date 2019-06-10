@@ -72,7 +72,7 @@
 											while($row = mysqli_fetch_array($result)){
 												echo "<tr>";
 													echo "<td align=center>";
-														echo "<input type='submit' name='addPlaylist' class='btn btn-primary' value=" . $row['Playlist_name'] . ">";
+														echo "<input type='submit' name='addPlaylist' class='btn btn-primary' value='" . $row['Playlist_name'] . "'>";
 													echo "</td>";
 												echo "</tr>";
 											}

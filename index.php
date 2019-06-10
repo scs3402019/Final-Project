@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Dashboard</title>
-    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="./style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.js"></script>
     <style type="text/css">
@@ -35,7 +35,9 @@
                     <div class="page-header clearfix">
                         <h2 class="pull-left"><img src="songbird.jfif" height=25px> Songbird</h2>
                     </div>
-					Welcome to the simplest music streaming service this side of the Willamette! Pick a button below to get started!
+					Welcome to the simplest music streaming service this side of the Willamette!
+					<br>
+					Pick a button below to get started!
 					<br><br>
 					<a href="createSong.php" class="btn btn-success">Add New Song</a>
 					<a href="createPlaylist.php" class="btn btn-success">Create Playlist</a>
