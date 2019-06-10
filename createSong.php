@@ -3,7 +3,7 @@
 require_once "config.php";
  
 // Define variables and initialize with empty values
-$Name = $Length = $Performer = "";
+$Title = $Length = $Performer = "";
 $Title_err = $Length_err = $Performer_err= "" ;
 
  
@@ -11,8 +11,8 @@ $Title_err = $Length_err = $Performer_err= "" ;
 if($_SERVER["REQUEST_METHOD"] == "POST"){
 	
     // Validate Title
-    $Name = trim($_POST["Name"]);
-	if(empty($Name)){
+    $Title = trim($_POST["Name"]);
+	if(empty($Title)){
 		$Title_err = "Please enter a Song Title.";
 	}
 	
