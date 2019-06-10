@@ -4,7 +4,7 @@ require_once "config.php";
  
 // Define variables and initialize with empty values
 $Name = $Length = $Performer = "";
-$Title_err = $Length_err = $Release_date_err = $Performer_err= "" ;
+$Title_err = $Length_err = $Performer_err= "" ;
 
  
 // Processing form data when form is submitted
@@ -31,16 +31,15 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     // Check input errors before inserting in database
     if(empty($Title_err) && empty($Length_err) && empty($Release_Date_err) && empty($Performer_err)){
         // Prepare an insert statement
-        $sql = "INSERT INTO Song(Name, Length, Performer, Release_date) VALUES (?,?,?)";
+        $sql = "INSERT INTO Song(Name, Length, Performer) VALUES (?,?,?)";
          
         if($stmt = mysqli_prepare($link, $sql)){
             // Bind variables to the prepared statement as parameters
             mysqli_stmt_bind_param($stmt, "sss", $param_Name, $param_Length, $param_Performer);
             
             // Set parameters
-			$param_Title = $Title;
+		$param_Title = $Title;
             $param_Length = $Length;
-            $param_Release_Date = $Release_date;
             $param_Performer = $Performer;
             
             // Attempt to execute the prepared statement
