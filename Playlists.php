@@ -10,11 +10,7 @@
 	
 	
 	if($_SERVER["REQUEST_METHOD"] == "POST"){
-		//Validate Playlist
-		$Playlist = trim($_POST["playlistAdd"]);
-		if (empty($Playlist)){
-			$Playlist_err = "Please enter a Playlist name";
-		}
+		
 		// Check input errors before inserting in database
 		if(empty($Playlist_name_err)){
 			// Prepare an insert statement
@@ -23,7 +19,7 @@
 			if($stmt = mysqli_prepare($link, $sqlInsert)){
 				mysqli_stmt_bind_param($stmt, "ssss", $param_Playlist, $param_Artist, $param_Album, $param_Title);
 				
-				$param_Playlist = trim($_POST['$Playlist']);
+				$param_Playlist = trim($_POST['addPlaylist']);
 				$param_Album = trim($_POST['Album']);
 				$param_Artist = trim($_POST['Artist']);
 				$param_Title = trim($_POST['Title']);
@@ -47,7 +43,6 @@
 <head>
     <meta charset="UTF-8">
     <title>Add to Playlist</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">
 	<link rel="stylesheet" href="./style.css">
     <style type="text/css">
         .wrapper{
@@ -68,16 +63,21 @@
                     <p>Please select the playlist to add <b><?php echo $sName; ?></b> to.</p>
                     <form action="<?php echo htmlspecialchars(basename($_SERVER['REQUEST_URI'])); ?>" method="post">
                         <div class="form-group <?php echo (!empty($Playlist_err)) ? 'has-error' : ''; ?>">
-                            <label>Playlist</label>
                             <?php
 								$sql = "SELECT DISTINCT Playlist_name FROM Playlist";
 								if($result = mysqli_query($link, $sql)){
 									if(mysqli_num_rows($result) > 0){
-										echo "<select name='playlistAdd'>";
-										while ($row = mysqli_fetch_array($result)) {
-											echo "<option value='" . $row['Playlist_name'] . "'>" . $row['Playlist_name'] . "</option>";
-										}
-										echo "</select>";
+										echo "<table class='table'>";
+										echo "<tbody>";
+											while($row = mysqli_fetch_array($result)){
+												echo "<tr>";
+													echo "<td align=center>";
+														echo "<input type='submit' name='addPlaylist' class='btn btn-primary' value=" . $row['Playlist_name'] . ">";
+													echo "</td>";
+												echo "</tr>";
+											}
+										echo "</tbody>";                            
+										echo "</table>";
 									}
 								}
 								mysqli_free_result($result);
