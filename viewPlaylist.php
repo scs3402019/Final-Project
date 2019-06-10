@@ -14,8 +14,7 @@
 <head>
     <meta charset="UTF-8">
     <title>View Playlists</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">
-	<script src="style.css"></script>
+    <link rel="stylesheet" href="style.css">
     <style type="text/css">
         .wrapper{
             width: 500px;
