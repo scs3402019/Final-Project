@@ -3,7 +3,7 @@
 require_once "config.php";
  
 // Define variables and initialize with empty values
-$Title = $Length = $Performer = "";
+$Name = $Length = $Performer = "";
 $Title_err = $Length_err = $Performer_err= "" ;
 
  
@@ -11,7 +11,7 @@ $Title_err = $Length_err = $Performer_err= "" ;
 if($_SERVER["REQUEST_METHOD"] == "POST"){
 	
     // Validate Title
-    $Title = trim($_POST["Name"]);
+    $Title = trim($_POST["Title"]);
 	if(empty($Title)){
 		$Title_err = "Please enter a Song Title.";
 	}
@@ -29,29 +29,29 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 	}
 	
     // Check input errors before inserting in database
-    if(empty($Title_err) && empty($Length_err) && empty($Release_Date_err) && empty($Performer_err)){
+    if(empty($Title_err) && empty($Length_err) && empty($Performer_err)){
         // Prepare an insert statement
-        $sql = "INSERT INTO Song(Name, Length, Performer) VALUES (?,?,?)";
+        $sql = "INSERT INTO Song (Name, Length, Performer) VALUES (?, ?, ?)";
          
         if($stmt = mysqli_prepare($link, $sql)){
             // Bind variables to the prepared statement as parameters
-            mysqli_stmt_bind_param($stmt, "sss", $param_Name, $param_Length, $param_Performer);
+            mysqli_stmt_bind_param($stmt, "sss", $param_Title, $param_Length, $param_Performer);
             
             // Set parameters
-		$param_Title = $Title;
+			$param_Title = $Title;
             $param_Length = $Length;
             $param_Performer = $Performer;
             
             // Attempt to execute the prepared statement
             if(mysqli_stmt_execute($stmt)){
                 // Records created successfully. Redirect to landing page
-                header("location: index.php");
+                header("location: viewSongs.php");
                 exit();
             } else{
 				$Title_err = "Enter a unique Song.";
             }
         }
-         
+        mysqli_free_result($result);
         // Close statement
         mysqli_stmt_close($stmt);
     }
@@ -88,22 +88,17 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
 						<div class="form-group <?php echo (!empty($Title_err)) ? 'has-error' : ''; ?>">
                             <label>Song Title</label>
-                            <input type="text" name="Name" class="form-control" value="<?php echo $Name; ?>">
+                            <input type="text" name="Title" class="form-control" value="<?php echo $Title; ?>">
                             <span class="help-block"><?php echo $Title_err;?></span>
-                        </div>
-                        <div class="form-group <?php echo (!empty($Length_err)) ? 'has-error' : ''; ?>">
                             <label>Song Length</label>
                             <input type="text" name="Length" class="form-control" value="<?php echo $Length; ?>">
                             <span class="help-block"><?php echo $Length_err;?></span>
-                        </div>
-                        
-                        <div class="form-group <?php echo (!empty($Performer_err)) ? 'has-error' : ''; ?>">
                             <label>Performer</label>
                             <input type="text" name="Performer" class="form-control" value="<?php echo $Performer; ?>">
                             <span class="help-block"><?php echo $Performer_err;?></span>
                         </div>
                         <input type="submit" class="btn btn-primary" value="Add Song">
-                        <a href="index.php" class="btn btn-default">Cancel</a>
+                        <a href="viewSongs.php" class="btn btn-default">Cancel</a>
                     </form>
                 </div>
             </div>        
